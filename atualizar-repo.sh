@@ -24,11 +24,12 @@ fi
 git add -A
 
 if git diff --cached --quiet; then
-  echo "Nada para commitar. Repositorio ja esta atualizado."
-  exit 0
+  echo "Nada novo para commitar."
+else
+  git commit -m "$MSG"
 fi
 
-git commit -m "$MSG"
+# Envia quaisquer commits locais ainda nao presentes no GitHub
 git push origin HEAD
 
-echo "Concluido: alteracoes enviadas para o GitHub."
+echo "Concluido: repositorio sincronizado com o GitHub."
