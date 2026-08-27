@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfólio de Projetos — CNO Inteligência Educacional</title>
+<meta name="description" content="Portfólio de aplicações e protótipos educacionais desenvolvidos para a CNO Inteligência Educacional.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --blue-dark:#0a1628;--blue-mid:#112244;--blue-accent:#1a4fa8;--blue-bright:#2979ff;
+  --green:#39e07a;--border:#1e3a5f;--text-main:#e8f0fe;--text-muted:#6b8cba;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);font-size:15px;color:var(--text-main);background:var(--blue-dark);min-height:100vh;display:flex;flex-direction:column}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#061020 0%,#0d2045 50%,#061020 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.header-circuit{position:absolute;inset:0;opacity:.07;background-image:repeating-linear-gradient(0deg,transparent,transparent 28px,#39e07a 28px,#39e07a 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,#39e07a 28px,#39e07a 29px)}
+.header-inner{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2.25rem 1.5rem}
+.logo-area{display:flex;align-items:center;gap:14px;margin-bottom:1.1rem}
+.logo-badge{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1a4fa8,#0d2045);border:2px solid #2979ff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-badge svg{width:32px;height:32px}
+.logo-text h2{font-size:20px;font-weight:700;color:#fff;letter-spacing:.04em;line-height:1}
+.logo-text p{font-size:11px;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.header h1{font-size:28px;font-weight:700;color:#fff;letter-spacing:.01em;margin-bottom:.4rem}
+.header .lead{font-size:14px;color:var(--text-muted);max-width:60ch;line-height:1.6}
+
+/* CONTENT */
+.content{flex:1;max-width:960px;width:100%;margin:0 auto;padding:2rem 1.5rem 3rem}
+.section-lbl{font-size:10px;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.card{background:#0d1e38;border:1px solid var(--border);border-radius:14px;padding:1.4rem;display:flex;flex-direction:column;transition:border-color .18s,transform .18s}
+.card:hover{border-color:#2979ff;transform:translateY(-2px)}
+.card-icon{width:44px;height:44px;border-radius:10px;background:#061020;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--green);margin-bottom:.9rem}
+.card h3{font-size:16px;font-weight:600;color:var(--text-main);margin-bottom:.5rem}
+.card p{font-size:13px;color:var(--text-muted);line-height:1.6;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin:.9rem 0}
+.tag{font-size:10px;color:#8aaac8;background:#061020;border:1px solid var(--border);border-radius:20px;padding:3px 9px;letter-spacing:.03em}
+.card-link{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:13px;font-weight:600;color:#fff;text-decoration:none;background:linear-gradient(135deg,#1a4fa8,#2979ff);border-radius:8px;padding:8px 16px;transition:opacity .15s}
+.card-link:hover{opacity:.88}
+.card.soon{border-style:dashed;opacity:.65}
+.card.soon .card-icon{color:var(--text-muted)}
+.card.soon .badge-soon{align-self:flex-start;font-size:11px;color:var(--text-muted);border:1px solid var(--border);border-radius:20px;padding:6px 14px}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);background:#061020;padding:1.75rem 1.5rem;text-align:center}
+.footer a{color:#5a7aa0;text-decoration:none;font-size:12px;letter-spacing:.03em}
+.footer a:hover{color:var(--green)}
+
+@media(max-width:560px){.header h1{font-size:23px}.header-inner{padding:1.75rem 1.25rem}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-circuit"></div>
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-badge">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="#2979ff" stroke-width="1.5" fill="none"/>
+          <rect x="19" y="2" width="1.5" height="36" fill="#2979ff" opacity=".5"/>
+          <path d="M8 12 Q4 20 8 28" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+          <circle cx="6" cy="12" r="1.5" fill="#2979ff"/><circle cx="6" cy="20" r="1.5" fill="#2979ff"/><circle cx="6" cy="28" r="1.5" fill="#2979ff"/>
+          <line x1="6" y1="12" x2="11" y2="12" stroke="#2979ff" stroke-width="1"/>
+          <line x1="6" y1="20" x2="11" y2="20" stroke="#2979ff" stroke-width="1"/>
+          <line x1="6" y1="28" x2="11" y2="28" stroke="#2979ff" stroke-width="1"/>
+          <rect x="20.5" y="10" width="6" height="6" rx="1" fill="#39e07a" opacity=".8"/>
+          <rect x="20.5" y="18" width="4" height="4" rx="1" fill="#39e07a" opacity=".5"/>
+          <rect x="20.5" y="24" width="6" height="6" rx="1" fill="#39e07a" opacity=".6"/>
+          <text x="13" y="24" font-size="11" font-weight="bold" fill="#ffffff" font-family="Arial">σ</text>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h2>CNO</h2>
+        <p>Inteligência Educacional</p>
+      </div>
+    </div>
+    <h1>Portfólio de Projetos</h1>
+    <p class="lead">Aplicações interativas e protótipos educacionais desenvolvidos para a CNO Inteligência Educacional. Clique em um projeto para abri-lo.</p>
+  </div>
+</header>
+
+<main class="content">
+  <div class="section-lbl">Projetos</div>
+  <div class="grid">
+
+    <article class="card">
+      <div class="card-icon">σ</div>
+      <h3>App de Álgebra Relacional</h3>
+      <p>Ferramenta interativa para praticar as operações da álgebra relacional — seleção, projeção, união, interseção, diferença, produto, junção e renomeação — com explorador de operadores, tabelas de exemplo e exercícios com correção automática.</p>
+      <div class="tags">
+        <span class="tag">Banco de Dados</span>
+        <span class="tag">Educacional</span>
+        <span class="tag">HTML / JS</span>
+      </div>
+      <a class="card-link" href="algebra-relacional/">Abrir projeto →</a>
+    </article>
+
+    <article class="card soon">
+      <div class="card-icon">+</div>
+      <h3>Novos projetos</h3>
+      <p>Outras aplicações da plataforma de cursos CNO serão publicadas aqui.</p>
+      <span class="badge-soon">Em breve</span>
+    </article>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <a href="https://cnointeligenciaeducacional.lovable.app" target="_blank" rel="noopener noreferrer">CNO (2026) — Todos os direitos reservados</a>
+</footer>
+
+</body>
+</html>
