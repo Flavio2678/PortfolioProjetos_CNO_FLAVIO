@@ -1,0 +1,437 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);font-size:14px;color:#e8f0fe;background:#0a1628}
+:root{--blue-dark:#0a1628;--blue-mid:#112244;--blue-accent:#1a4fa8;--blue-bright:#2979ff;--green:#39e07a;--green-dark:#1db954;--silver:#8aaac8;--border:#1e3a5f;--text-main:#e8f0fe;--text-muted:#6b8cba}
+
+.wrap{min-height:100vh;background:#0a1628}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#061020 0%,#0d2045 50%,#061020 100%);border-bottom:1px solid #1e3a5f;padding:0;position:relative;overflow:hidden}
+.header-circuit{position:absolute;inset:0;opacity:.07;background-image:repeating-linear-gradient(0deg,transparent,transparent 28px,#39e07a 28px,#39e07a 29px),repeating-linear-gradient(90deg,transparent,transparent 28px,#39e07a 28px,#39e07a 29px)}
+.header-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem}
+.logo-area{display:flex;align-items:center;gap:14px}
+.logo-badge{position:relative;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1a4fa8,#0d2045);border:2px solid #2979ff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-badge svg{width:32px;height:32px}
+.logo-text h1{font-size:20px;font-weight:700;color:#fff;letter-spacing:.04em;line-height:1}
+.logo-text p{font-size:11px;color:#39e07a;letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.header-tag{font-size:11px;color:var(--text-muted);background:#112244;border:0.5px solid #1e3a5f;border-radius:20px;padding:4px 12px;letter-spacing:.05em}
+
+/* NAV */
+.nav{display:flex;gap:2px;padding:.75rem 1.5rem;background:#061020;border-bottom:1px solid #1e3a5f}
+.nav-btn{padding:7px 18px;border-radius:20px;border:0.5px solid transparent;background:transparent;cursor:pointer;font-size:13px;color:var(--text-muted);transition:all .18s;letter-spacing:.02em}
+.nav-btn:hover{color:#e8f0fe;background:#112244}
+.nav-btn.active{background:#1a4fa8;border-color:#2979ff;color:#fff;font-weight:500}
+
+/* CONTENT */
+.content{padding:1.25rem 1.5rem 2.5rem}
+
+/* CARDS */
+.card{background:#0d1e38;border:0.5px solid #1e3a5f;border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:.85rem}
+.card-accent{border-left:3px solid #2979ff}
+.lbl{font-size:10px;font-weight:600;color:#39e07a;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.7rem}
+
+/* OP PILLS */
+.ops-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
+.op-pill{display:flex;align-items:center;gap:6px;padding:6px 14px;border:0.5px solid #1e3a5f;border-radius:20px;background:#0a1628;cursor:pointer;font-size:13px;color:var(--text-muted);transition:all .18s}
+.op-pill:hover{border-color:#2979ff;color:#e8f0fe;background:#112244}
+.op-pill.active{background:linear-gradient(135deg,#1a4fa8,#113a80);border-color:#2979ff;color:#fff;font-weight:500}
+.op-pill.active .op-sym{color:#39e07a}
+.op-sym{font-size:16px;width:18px;text-align:center;color:#2979ff}
+
+/* FORM */
+.form-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:.75rem}
+input,select{height:36px;padding:0 12px;border:0.5px solid #1e3a5f;border-radius:8px;background:#061020;color:#e8f0fe;font-size:13px;outline:none;transition:border .15s}
+input::placeholder{color:#3a5a7a}
+input:focus,select:focus{border-color:#2979ff}
+input{min-width:180px;flex:1}
+select{min-width:130px}
+select option{background:#0a1628}
+.run-btn{height:36px;padding:0 18px;background:linear-gradient(135deg,#1a4fa8,#2979ff);border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:#fff;white-space:nowrap;transition:opacity .15s;letter-spacing:.02em}
+.run-btn:hover{opacity:.88}
+.op-desc{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:.1rem}
+.hint-txt{font-size:12px;color:#3a5a7a;margin-top:.5rem;font-style:italic}
+.sym-sep{font-size:20px;color:#2979ff;padding:0 6px}
+
+/* EXPR */
+.expr-chip{display:inline-flex;align-items:center;gap:8px;background:#061020;border:0.5px solid #1e3a5f;border-radius:20px;padding:5px 14px;font-family:var(--font-mono);font-size:12px;color:#39e07a;margin-bottom:.75rem}
+.expr-label{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em}
+
+/* BADGES */
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.03em}
+.b-ok{background:#0d3320;color:#39e07a;border:0.5px solid #1db954}
+.b-err{background:#2a0a0a;color:#ff6b6b;border:0.5px solid #cc3333}
+.b-cnt{background:#0a1e3a;color:#60a5fa;border:0.5px solid #1a4fa8}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-weight:600;padding:8px 12px;text-align:left;border-bottom:1px solid #1e3a5f;font-size:11px;color:#39e07a;text-transform:uppercase;letter-spacing:.06em;background:#061020}
+td{padding:8px 12px;border-bottom:0.5px solid #0d1e38;color:#c8d8ee}
+tr:hover td{background:#112244}
+tr:last-child td{border-bottom:none}
+.tbl-wrap{overflow-x:auto;border-radius:10px;border:0.5px solid #1e3a5f;background:#061020}
+
+/* SCHEMA */
+.schema-card{background:#0d1e38;border:0.5px solid #1e3a5f;border-radius:12px;overflow:hidden;margin-bottom:.85rem}
+.schema-head{padding:.75rem 1.1rem;display:flex;align-items:center;gap:10px;background:#061020;border-bottom:0.5px solid #1e3a5f}
+.schema-dot{width:10px;height:10px;border-radius:50%}
+.schema-name{font-size:13px;font-weight:600;color:#e8f0fe}
+.schema-count{font-size:11px;color:var(--text-muted);margin-left:4px}
+
+/* EXERCISES */
+.exer-item{display:flex;align-items:center;gap:12px;padding:.85rem 1.1rem;border:0.5px solid #1e3a5f;border-radius:12px;margin-bottom:.6rem;cursor:pointer;background:#0d1e38;transition:all .18s}
+.exer-item:hover{border-color:#2979ff;background:#112244}
+.exer-item.solved{border-color:#1db954;background:#0a1e14}
+.exer-num{width:30px;height:30px;border-radius:50%;background:#061020;border:0.5px solid #1e3a5f;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--text-muted);flex-shrink:0}
+.exer-num.done{background:#0d3320;border-color:#1db954;color:#39e07a}
+.exer-info{flex:1}
+.exer-title{font-weight:500;font-size:13px;color:#e8f0fe;margin-bottom:2px}
+.exer-sub{font-size:12px;color:var(--text-muted)}
+.arr{font-size:18px;color:#2979ff}
+.detail-q{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:.6rem;color:#e8f0fe}
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:20px;border:0.5px solid #1e3a5f;background:transparent;cursor:pointer;font-size:13px;color:var(--text-muted);margin-top:.75rem;transition:all .15s}
+.back-btn:hover{border-color:#2979ff;color:#e8f0fe}
+.ghost-btn{height:36px;padding:0 14px;background:transparent;border:0.5px solid #1e3a5f;border-radius:8px;cursor:pointer;font-size:13px;color:var(--text-muted);transition:all .15s}
+.ghost-btn:hover{border-color:#2979ff;color:#e8f0fe}
+.empty{font-size:13px;color:#3a5a7a;padding:.5rem 0}
+.result-hdr{display:flex;align-items:center;gap:8px;margin-bottom:.75rem}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,#1e3a5f 20%,#1e3a5f 80%,transparent);margin:.5rem 0 1rem}
+
+/* FOOTER */
+.footer{border-top:1px solid #1e3a5f;background:#061020;padding:1.75rem 1.5rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;text-align:center}
+.footer-logo-link{display:inline-block;border-radius:8px;transition:opacity .18s;line-height:0}
+.footer-logo-link:hover{opacity:.8}
+.footer-logo-link svg{height:44px;width:auto}
+.footer-copy{font-size:11px;color:#5a7aa0;letter-spacing:.03em}
+.footer-copy a{color:#5a7aa0;text-decoration:none}
+.footer-copy a:hover{color:#39e07a}
+</style>
+
+<div class="wrap">
+<h2 class="sr-only">CNO Inteligencia Educacional — App de Álgebra Relacional</h2>
+
+<div class="header">
+  <div class="header-circuit"></div>
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-badge">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="#2979ff" stroke-width="1.5" fill="none"/>
+          <rect x="19" y="2" width="1.5" height="36" fill="#2979ff" opacity=".5"/>
+          <path d="M8 12 Q4 20 8 28" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+          <circle cx="6" cy="12" r="1.5" fill="#2979ff"/>
+          <circle cx="6" cy="20" r="1.5" fill="#2979ff"/>
+          <circle cx="6" cy="28" r="1.5" fill="#2979ff"/>
+          <line x1="6" y1="12" x2="11" y2="12" stroke="#2979ff" stroke-width="1"/>
+          <line x1="6" y1="20" x2="11" y2="20" stroke="#2979ff" stroke-width="1"/>
+          <line x1="6" y1="28" x2="11" y2="28" stroke="#2979ff" stroke-width="1"/>
+          <rect x="20.5" y="10" width="6" height="6" rx="1" fill="#39e07a" opacity=".8"/>
+          <rect x="20.5" y="18" width="4" height="4" rx="1" fill="#39e07a" opacity=".5"/>
+          <rect x="20.5" y="24" width="6" height="6" rx="1" fill="#39e07a" opacity=".6"/>
+          <text x="13" y="24" font-size="11" font-weight="bold" fill="#ffffff" font-family="Arial">σ</text>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h1>CNO</h1>
+        <p>Inteligencia Educacional</p>
+      </div>
+    </div>
+    <div class="header-tag">Álgebra Relacional</div>
+  </div>
+</div>
+
+<div class="nav">
+  <button class="nav-btn active" onclick="goTab('explorer')">Explorador</button>
+  <button class="nav-btn" onclick="goTab('schema')">Tabelas</button>
+  <button class="nav-btn" onclick="goTab('exercicios')">Exercícios</button>
+</div>
+
+<div class="content">
+
+<div id="tab-explorer">
+  <div class="card card-accent">
+    <div class="lbl">operador</div>
+    <div class="ops-grid" id="op-btns">
+      <button class="op-pill active" onclick="selOp('select')"><span class="op-sym">σ</span> Seleção</button>
+      <button class="op-pill" onclick="selOp('project')"><span class="op-sym">π</span> Projeção</button>
+      <button class="op-pill" onclick="selOp('union')"><span class="op-sym">∪</span> União</button>
+      <button class="op-pill" onclick="selOp('intersect')"><span class="op-sym">∩</span> Interseção</button>
+      <button class="op-pill" onclick="selOp('diff')"><span class="op-sym">−</span> Diferença</button>
+      <button class="op-pill" onclick="selOp('product')"><span class="op-sym">×</span> Produto</button>
+      <button class="op-pill" onclick="selOp('join')"><span class="op-sym">⋈</span> Junção</button>
+      <button class="op-pill" onclick="selOp('rename')"><span class="op-sym">ρ</span> Renomeação</button>
+    </div>
+    <div class="divider"></div>
+    <div id="op-form"></div>
+  </div>
+
+  <div id="expr-area" style="display:none;margin-bottom:.85rem">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span class="expr-label">expressão:</span>
+      <div class="expr-chip" id="expr-txt"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="result-hdr">
+      <div class="lbl" style="margin:0">resultado</div>
+      <span id="cnt-badge"></span>
+    </div>
+    <div id="result-out"><span class="empty">Configure o operador acima e clique em Executar.</span></div>
+  </div>
+</div>
+
+<div id="tab-schema" style="display:none">
+  <div class="schema-card">
+    <div class="schema-head"><div class="schema-dot" style="background:#2979ff"></div><span class="schema-name">Alunos</span><span class="schema-count">6 registros</span></div>
+    <div class="tbl-wrap" id="tbl-alunos"></div>
+  </div>
+  <div class="schema-card">
+    <div class="schema-head"><div class="schema-dot" style="background:#39e07a"></div><span class="schema-name">Cursos</span><span class="schema-count">4 registros</span></div>
+    <div class="tbl-wrap" id="tbl-cursos"></div>
+  </div>
+  <div class="schema-card">
+    <div class="schema-head"><div class="schema-dot" style="background:#f4a61a"></div><span class="schema-name">Matrículas</span><span class="schema-count">10 registros</span></div>
+    <div class="tbl-wrap" id="tbl-matriculas"></div>
+  </div>
+</div>
+
+<div id="tab-exercicios" style="display:none">
+  <div id="exer-list"></div>
+  <div id="exer-detail" style="display:none">
+    <div class="card card-accent">
+      <div id="exer-q" class="detail-q"></div>
+      <div id="exer-hint" style="font-size:12px;color:#3a5a7a;margin-bottom:1rem;line-height:1.6;font-style:italic"></div>
+      <div class="lbl">sua expressão</div>
+      <div class="form-row" style="margin-top:0">
+        <input id="exer-input" placeholder="Ex: σ_nota>7(Alunos)">
+        <button class="run-btn" onclick="checkExer()">Verificar ↗</button>
+        <button class="ghost-btn" onclick="showAnswer()">Ver resposta</button>
+      </div>
+      <div id="exer-feedback" style="margin-top:.75rem"></div>
+    </div>
+    <button class="back-btn" onclick="backToList()">← voltar</button>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <a class="footer-logo-link" href="https://cnointeligenciaeducacional.lovable.app" target="_blank" rel="noopener noreferrer" aria-label="Visitar site da CNO Inteligência Educacional">
+    <svg viewBox="0 0 300 130" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cnoBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3a6fd8"/>
+          <stop offset="100%" stop-color="#0d2045"/>
+        </linearGradient>
+        <linearGradient id="cnoGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#39e07a"/>
+          <stop offset="100%" stop-color="#0d5030"/>
+        </linearGradient>
+      </defs>
+      <!-- circuit tendrils left of C -->
+      <g stroke="#8aaac8" stroke-width="1.6" fill="none" opacity=".85">
+        <path d="M18 30 Q6 40 18 50"/>
+        <path d="M14 34 h-8"/><circle cx="4" cy="34" r="2" fill="#8aaac8"/>
+        <path d="M12 44 h-6"/><circle cx="4" cy="44" r="2" fill="#8aaac8"/>
+        <path d="M20 24 v-6 h10"/><circle cx="32" cy="18" r="2" fill="#8aaac8"/>
+        <path d="M20 56 v6 h10"/><circle cx="32" cy="64" r="2" fill="#8aaac8"/>
+      </g>
+      <!-- C -->
+      <path d="M55 20 A30 30 0 1 0 55 80" stroke="#26406e" stroke-width="13" fill="none" stroke-linecap="round"/>
+      <!-- N -->
+      <path d="M78 22 V78 M78 22 L108 78 M108 22 V78" stroke="#26406e" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- O split brain circle -->
+      <circle cx="150" cy="50" r="30" fill="url(#cnoBlue)"/>
+      <path d="M150 20 A30 30 0 0 1 150 80 Z" fill="url(#cnoGreen)"/>
+      <circle cx="150" cy="50" r="30" fill="none" stroke="#c9d6e8" stroke-width="2.5"/>
+      <g stroke="#cfe0f5" stroke-width="1" fill="none" opacity=".8">
+        <path d="M130 38 h8 v-6 h6"/><circle cx="144" cy="32" r="1.6" fill="#cfe0f5"/>
+        <path d="M128 50 h10"/><circle cx="138" cy="50" r="1.6" fill="#cfe0f5"/>
+        <path d="M132 62 h6 v6 h8"/><circle cx="146" cy="68" r="1.6" fill="#cfe0f5"/>
+      </g>
+      <g stroke="#c9f5da" stroke-width="1" fill="none" opacity=".85">
+        <path d="M172 36 h-6 v-4 h-6"/><circle cx="158" cy="32" r="1.6" fill="#c9f5da"/>
+        <path d="M174 50 h-10"/><circle cx="162" cy="50" r="1.6" fill="#c9f5da"/>
+        <path d="M170 64 h-6 v4 h-8"/><circle cx="156" cy="68" r="1.6" fill="#c9f5da"/>
+      </g>
+      <text x="150" y="112" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="17" letter-spacing="1.5" fill="#e8f0fe">INTELIGÊNCIA EDUCACIONAL</text>
+    </svg>
+  </a>
+  <div class="footer-copy">
+    <a href="https://cnointeligenciaeducacional.lovable.app" target="_blank" rel="noopener noreferrer">CNO (2026) — Todos os direitos reservados</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+const DB={
+  Alunos:{cols:['id','nome','cidade','nota'],rows:[[1,'Ana Lima','Florianópolis',8.5],[2,'Bruno Souza','São Paulo',6.0],[3,'Carla Neves','Florianópolis',9.2],[4,'Diego Alves','Curitiba',5.5],[5,'Eva Costa','São Paulo',7.8],[6,'Fábio Melo','Florianópolis',4.0]]},
+  Cursos:{cols:['id','nome','area'],rows:[[1,'Banco de Dados','Tecnologia'],[2,'Algoritmos','Tecnologia'],[3,'Cálculo','Exatas'],[4,'Física','Exatas']]},
+  Matriculas:{cols:['aluno_id','curso_id','semestre'],rows:[[1,1,'2024.1'],[1,2,'2024.1'],[2,1,'2024.1'],[2,3,'2024.1'],[3,1,'2024.1'],[3,4,'2024.1'],[4,2,'2024.1'],[5,1,'2024.1'],[5,3,'2024.1'],[6,2,'2024.1']]}
+};
+const opKeys=['select','project','union','intersect','diff','product','join','rename'];
+let curOp='select';
+const solved=new Set();
+const opMeta={
+  select:{sym:'σ',desc:'Filtra as linhas da relação que satisfazem uma condição.',hint:'Exemplos: nota>7  |  cidade="Florianópolis"  |  id=3'},
+  project:{sym:'π',desc:'Retorna apenas as colunas especificadas (elimina duplicatas).',hint:'Exemplos: nome,nota  |  id,nome,cidade'},
+  union:{sym:'∪',desc:'Retorna todas as linhas de R1 e R2, sem duplicatas. Esquemas devem ser iguais.',hint:'Selecione duas tabelas com o mesmo esquema'},
+  intersect:{sym:'∩',desc:'Retorna as linhas presentes em ambas as relações.',hint:'Linhas comuns entre R1 e R2'},
+  diff:{sym:'−',desc:'Retorna as linhas de R1 que não aparecem em R2.',hint:'Linhas exclusivas de R1'},
+  product:{sym:'×',desc:'Combina cada linha de R1 com cada linha de R2.',hint:'Cuidado: gera n×m linhas'},
+  join:{sym:'⋈',desc:'Junção natural: une as relações pelos atributos em comum.',hint:'Ex: Alunos ⋈ Matriculas (via aluno_id = id)'},
+  rename:{sym:'ρ',desc:'Renomeia a relação (não altera colunas ou dados).',hint:'Ex: Estudantes — novo nome para Alunos'}
+};
+const exercises=[
+  {id:1,title:'Seleção simples',q:'Liste os alunos com nota maior que 7.',answer:r=>r.table==='Alunos'&&r.rows.length===3,solution:'σ_nota>7(Alunos)',hint:'Use σ sobre Alunos com condição nota>7'},
+  {id:2,title:'Projeção',q:'Mostre apenas o nome e a nota de todos os alunos.',answer:r=>r.cols&&r.cols.length===2&&r.cols.includes('nome')&&r.cols.includes('nota'),solution:'π_nome,nota(Alunos)',hint:'Use π escolhendo colunas nome e nota'},
+  {id:3,title:'Seleção com texto',q:'Quais alunos são de Florianópolis?',answer:r=>r.table==='Alunos'&&r.rows.length===3&&r.rows.every(row=>row[2]==='Florianópolis'),solution:'σ_cidade="Florianópolis"(Alunos)',hint:'Use σ com cidade="Florianópolis"'},
+  {id:4,title:'Composição',q:'Mostre apenas os nomes dos alunos de São Paulo.',answer:r=>r.cols&&r.cols.length===1&&r.cols[0]==='nome'&&r.rows.length===2,solution:'π_nome(σ_cidade="São Paulo"(Alunos))',hint:'Aplique σ primeiro, depois π'},
+  {id:5,title:'Junção natural',q:'Liste todos os alunos com suas matrículas.',answer:r=>r.cols&&r.cols.includes('semestre')&&r.rows.length>=5,solution:'Alunos ⋈ Matriculas',hint:'Use ⋈ entre Alunos e Matriculas'},
+];
+
+function renderTbl(data){
+  if(!data||!data.rows.length)return '<span class="empty">Nenhum resultado.</span>';
+  let h='<div class="tbl-wrap"><table><thead><tr>'+data.cols.map(c=>`<th>${c}</th>`).join('')+'</tr></thead><tbody>';
+  data.rows.forEach(r=>{h+=`<tr>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`;});
+  return h+'</tbody></table></div>';
+}
+function staticTbl(name){
+  const d=DB[name];
+  let h='<table><thead><tr>'+d.cols.map(c=>`<th>${c}</th>`).join('')+'</tr></thead><tbody>';
+  d.rows.forEach(r=>{h+=`<tr>${r.map(v=>`<td>${v}</td>`).join('')}</tr>`;});
+  return h+'</tbody></table>';
+}
+['Alunos','Cursos','Matriculas'].forEach(n=>{document.getElementById('tbl-'+n.toLowerCase()).innerHTML=staticTbl(n);});
+
+function goTab(t){
+  ['explorer','schema','exercicios'].forEach(id=>{document.getElementById('tab-'+id).style.display=id===t?'':'none';});
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>b.classList.toggle('active',['explorer','schema','exercicios'][i]===t));
+}
+function selOp(op){
+  curOp=op;
+  document.querySelectorAll('.op-pill').forEach((b,i)=>b.classList.toggle('active',opKeys[i]===op));
+  renderForm(op);
+}
+function tSel(id,def){
+  const keys=Object.keys(DB);
+  return`<select id="${id}">${keys.map(k=>`<option${k===(def||keys[0])?' selected':''} >${k}</option>`).join('')}</select>`;
+}
+function renderForm(op){
+  const m=opMeta[op];
+  let html=`<p class="op-desc">${m.desc}</p><div class="form-row">`;
+  if(op==='select')html+=tSel('sel-t')+`<input id="sel-c" placeholder="condição: ex. nota>7">`;
+  else if(op==='project')html+=tSel('proj-t')+`<input id="proj-c" placeholder="colunas: ex. nome,nota">`;
+  else if(['union','intersect','diff'].includes(op))html+=tSel('bin-r1')+`<span class="sym-sep">${m.sym}</span>`+tSel('bin-r2','Cursos');
+  else if(op==='product')html+=tSel('prod-r1')+`<span class="sym-sep">×</span>`+tSel('prod-r2','Cursos');
+  else if(op==='join')html+=tSel('join-r1')+`<span class="sym-sep">⋈</span>`+tSel('join-r2','Matriculas');
+  else if(op==='rename')html+=tSel('ren-t')+`<input id="ren-n" placeholder="novo nome: ex. Estudantes">`;
+  html+=`<button class="run-btn" onclick="execute()">Executar ↗</button></div>`;
+  html+=`<p class="hint-txt">${m.hint}</p>`;
+  document.getElementById('op-form').innerHTML=html;
+}
+function execute(){
+  let res,expr;
+  try{
+    if(curOp==='select'){const t=document.getElementById('sel-t').value,c=document.getElementById('sel-c').value.trim();res=doSel(t,c);expr=`σ_${c||'?'}(${t})`;}
+    else if(curOp==='project'){const t=document.getElementById('proj-t').value,cols=document.getElementById('proj-c').value.split(',').map(s=>s.trim()).filter(Boolean);res=doProj(t,cols);expr=`π_${cols.join(',')||'?'}(${t})`;}
+    else if(['union','intersect','diff'].includes(curOp)){const r1=document.getElementById('bin-r1').value,r2=document.getElementById('bin-r2').value,sym=curOp==='union'?'∪':curOp==='intersect'?'∩':'−';res=doSet(r1,r2,curOp);expr=`${r1} ${sym} ${r2}`;}
+    else if(curOp==='product'){const r1=document.getElementById('prod-r1').value,r2=document.getElementById('prod-r2').value;res=doProd(r1,r2);expr=`${r1} × ${r2}`;}
+    else if(curOp==='join'){const r1=document.getElementById('join-r1').value,r2=document.getElementById('join-r2').value;res=doJoin(r1,r2);expr=`${r1} ⋈ ${r2}`;}
+    else if(curOp==='rename'){const t=document.getElementById('ren-t').value,n=document.getElementById('ren-n').value.trim()||'NovaRelação';res=doRen(t,n);expr=`ρ_${n}(${t})`;}
+    document.getElementById('expr-area').style.display='';
+    document.getElementById('expr-txt').textContent=expr;
+    document.getElementById('cnt-badge').innerHTML=`<span class="badge b-cnt">${res.rows.length} linha(s)</span>`;
+    document.getElementById('result-out').innerHTML=renderTbl(res);
+  }catch(e){document.getElementById('result-out').innerHTML=`<span class="badge b-err">${e.message}</span>`;}
+}
+function evalCond(row,cols,cond){
+  if(!cond)return true;
+  const obj={};cols.forEach((c,i)=>{obj[c]=row[i];});
+  try{const expr=cond.replace(/([a-zA-Z_]+)/g,(m)=>obj.hasOwnProperty(m)?(typeof obj[m]==='string'?`"${obj[m]}"`:obj[m]):m);return Function('"use strict";return('+expr+')')();}catch(e){return false;}
+}
+function doSel(t,c){const d=DB[t];return{table:t,cols:[...d.cols],rows:d.rows.filter(r=>evalCond(r,d.cols,c))};}
+function doProj(t,cols){
+  const d=DB[t];const idxs=cols.length?cols.map(c=>d.cols.indexOf(c)).filter(i=>i>=0):d.cols.map((_,i)=>i);
+  const oc=idxs.map(i=>d.cols[i]),rows=d.rows.map(r=>idxs.map(i=>r[i]));
+  const seen=new Set();return{cols:oc,rows:rows.filter(r=>{const k=JSON.stringify(r);if(seen.has(k))return false;seen.add(k);return true;})};
+}
+function rk(r){return JSON.stringify(r);}
+function doSet(t1,t2,op){
+  const d1=DB[t1],d2=DB[t2];
+  if(JSON.stringify(d1.cols)!==JSON.stringify(d2.cols))throw new Error('As relações precisam ter o mesmo esquema.');
+  const s2=new Set(d2.rows.map(rk));let rows;
+  if(op==='union'){const seen=new Set();rows=[...d1.rows,...d2.rows].filter(r=>{const k=rk(r);if(seen.has(k))return false;seen.add(k);return true;});}
+  else if(op==='intersect')rows=d1.rows.filter(r=>s2.has(rk(r)));
+  else rows=d1.rows.filter(r=>!s2.has(rk(r)));
+  return{cols:[...d1.cols],rows};
+}
+function doProd(t1,t2){
+  const d1=DB[t1],d2=DB[t2],cols=[...d1.cols.map(c=>t1+'.'+c),...d2.cols.map(c=>t2+'.'+c)],rows=[];
+  d1.rows.forEach(r1=>d2.rows.forEach(r2=>rows.push([...r1,...r2])));
+  return{cols,rows};
+}
+function doJoin(t1,t2){
+  const d1=DB[t1],d2=DB[t2],com=d1.cols.filter(c=>d2.cols.includes(c));
+  if(!com.length)return doProd(t1,t2);
+  const i1=com.map(c=>d1.cols.indexOf(c)),i2=com.map(c=>d2.cols.indexOf(c));
+  const oc=[...d1.cols,...d2.cols.filter(c=>!com.includes(c))];
+  const ex=d2.cols.map((_,i)=>i).filter(i=>!i2.includes(i)),rows=[];
+  d1.rows.forEach(r1=>d2.rows.forEach(r2=>{if(i1.every((x,k)=>r1[x]==r2[i2[k]]))rows.push([...r1,...ex.map(i=>r2[i])]);} ));
+  return{cols:oc,rows};
+}
+function doRen(t,n){const d=DB[t];return{cols:[...d.cols],rows:d.rows.map(r=>[...r]),_name:n};}
+function evalExpr(s){
+  s=s.trim();
+  const jm=s.match(/^(\w+)\s*⋈\s*(\w+)$/);if(jm)return doJoin(jm[1],jm[2]);
+  const pm=s.match(/^π_([^(]+)\((.+)\)$/);
+  if(pm){const cols=pm[1].split(',').map(x=>x.trim()),inner=evalExpr(pm[2]);const idxs=cols.map(c=>inner.cols.indexOf(c)).filter(i=>i>=0),oc=idxs.map(i=>inner.cols[i]),rows=inner.rows.map(r=>idxs.map(i=>r[i]));const seen=new Set();return{cols:oc,rows:rows.filter(r=>{const k=JSON.stringify(r);if(seen.has(k))return false;seen.add(k);return true;})};}
+  const sm=s.match(/^σ_([^(]+)\((.+)\)$/);if(sm){const inner=evalExpr(sm[2]);return{...inner,rows:inner.rows.filter(r=>evalCond(r,inner.cols,sm[1]))};}
+  if(DB[s])return{table:s,cols:[...DB[s].cols],rows:[...DB[s].rows]};
+  throw new Error('Expressão não reconhecida: '+s);
+}
+
+const exList=document.getElementById('exer-list');
+exercises.forEach(ex=>{
+  const d=document.createElement('div');
+  d.className='exer-item'+(solved.has(ex.id)?' solved':'');
+  d.id='ei-'+ex.id;
+  d.innerHTML=`<div class="exer-num${solved.has(ex.id)?' done':''}">${solved.has(ex.id)?'✓':ex.id}</div><div class="exer-info"><div class="exer-title">${ex.title}</div><div class="exer-sub">${ex.q}</div></div><span class="arr">›</span>`;
+  d.onclick=()=>openExer(ex);
+  exList.appendChild(d);
+});
+function openExer(ex){
+  document.getElementById('exer-list').style.display='none';
+  document.getElementById('exer-detail').style.display='';
+  document.getElementById('exer-q').textContent=ex.id+'. '+ex.q;
+  document.getElementById('exer-hint').innerHTML='<strong style="font-weight:500;color:#6b8cba">Dica:</strong> '+ex.hint;
+  document.getElementById('exer-input').value='';
+  document.getElementById('exer-feedback').innerHTML='';
+  document.getElementById('exer-input').dataset.id=ex.id;
+}
+function checkExer(){
+  const inp=document.getElementById('exer-input').value.trim();
+  const id=parseInt(document.getElementById('exer-input').dataset.id);
+  const ex=exercises.find(e=>e.id===id);
+  let res;
+  try{res=evalExpr(inp);}catch(e){document.getElementById('exer-feedback').innerHTML=`<span class="badge b-err">Erro: ${e.message}</span>`;return;}
+  if(ex.answer(res)){
+    solved.add(id);
+    document.getElementById('exer-feedback').innerHTML=`<span class="badge b-ok" style="margin-bottom:.6rem;display:inline-block">Correto! Muito bem.</span>`+renderTbl(res);
+    const card=document.getElementById('ei-'+id);
+    if(card){card.className='exer-item solved';card.querySelector('.exer-num').className='exer-num done';card.querySelector('.exer-num').textContent='✓';}
+  }else{
+    document.getElementById('exer-feedback').innerHTML=`<span class="badge b-err" style="margin-bottom:.6rem;display:inline-block">Resultado incorreto, tente novamente.</span>`+renderTbl(res);
+  }
+}
+function showAnswer(){
+  const id=parseInt(document.getElementById('exer-input').dataset.id);
+  document.getElementById('exer-input').value=exercises.find(e=>e.id===id).solution;
+  document.getElementById('exer-feedback').innerHTML='<span style="font-size:12px;color:#3a5a7a;font-style:italic">Resposta exibida. Clique em Verificar para confirmar.</span>';
+}
+function backToList(){document.getElementById('exer-list').style.display='';document.getElementById('exer-detail').style.display='none';}
+renderForm('select');
+</script>
